@@ -6,9 +6,6 @@ metadata:
 spec:
   gatewayClassName: eg
   listeners:
-    - name: http
-      port: 80
-      protocol: HTTP
     - name: https
       port: 443
       protocol: HTTPS
@@ -23,7 +20,6 @@ spec:
         certificateRefs:
           - kind: Secret
             group: ""
-            # 这个group 字段非常重要 ！
             name: liwa-com
 ---
 apiVersion: v1
@@ -89,8 +85,14 @@ metadata:
   namespace: liwa
 spec:
   parentRefs:
-    - name: eg
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: eg
       sectionName: https
+      namespace: liwa
+  # parentRefs:
+  #   - name: eg
+  #     sectionName: https
   hostnames:
     - "www12.liwa.com"
   rules:

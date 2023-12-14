@@ -2,7 +2,7 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: GatewayClass
 metadata:
   name: eg
-  namespace: envoy-gateway-system
+  # namespace: envoy-gateway-system
 spec:
   controllerName: gateway.envoyproxy.io/gatewayclass-controller
   parametersRef:
@@ -18,8 +18,8 @@ metadata:
   namespace: envoy-gateway-system
 spec:
   mergeGateways: true
-  provider:
-    type: Kubernetes
-    kubernetes:
-      envoyService:
-        type: NodePort
+  # provider:
+  #   type: Kubernetes
+  #   kubernetes:
+  #     envoyService:
+  #       type: NodePort
